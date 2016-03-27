@@ -1,0 +1,118 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    tools:context="com.life.a666.RegisterAndLoginActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/statusBar"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/Theme.AppCompat.Light" />
+    <TextView
+        android:id="@+id/login_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:layout_below="@+id/toolbar"
+        android:padding="8dip"
+        android:text="登录"
+        android:textColor="@color/second_color"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/register_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/login_menu"
+        android:layout_toRightOf="@id/login_menu"
+        android:gravity="center"
+        android:padding="8dip"
+        android:text="注册"
+        android:textColor="@color/second_color"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/reset_password_menu"
+        style="@style/TextTheme.tipstheme_second"
+        android:layout_alignTop="@id/login_menu"
+        android:layout_toRightOf="@id/register_menu"
+        android:gravity="center"
+        android:padding="8dip"
+        android:text="找回密码" />
+
+    <View
+        android:id="@+id/diviver"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/register_menu"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/theme_color" />
+
+    <com.life.view.DeletableEditText
+        android:id="@+id/user_name_input"
+        android:layout_width="wrap_content"
+        android:layout_height="48dip"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/diviver"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="请输入帐号名"
+        android:paddingLeft="4dip"
+        android:paddingRight="4dip"
+        android:singleLine="true" >
+
+        <!--<requestFocus />-->
+    </com.life.view.DeletableEditText>
+
+    <com.life.view.DeletableEditText
+        android:id="@+id/user_password_input"
+        android:layout_width="wrap_content"
+        android:layout_height="48dip"
+        android:layout_alignLeft="@id/user_name_input"
+        android:layout_alignRight="@id/user_name_input"
+        android:layout_below="@+id/user_name_input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:paddingLeft="4dip"
+        android:paddingRight="4dip"
+        android:singleLine="true" />
+
+    <com.life.view.DeletableEditText
+        android:id="@+id/user_email_input"
+        android:layout_width="wrap_content"
+        android:layout_height="48dip"
+        android:layout_alignLeft="@id/user_name_input"
+        android:layout_alignRight="@id/user_name_input"
+        android:layout_below="@+id/user_password_input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="请输入邮箱地址"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="4dip"
+        android:paddingRight="4dip"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/btnAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/user_email_input"
+        android:layout_alignRight="@+id/user_email_input"
+        android:layout_below="@+id/user_email_input"
+        android:layout_marginTop="25dp"
+        android:text="注册"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+</RelativeLayout>

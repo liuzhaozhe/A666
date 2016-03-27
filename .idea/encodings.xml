@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true">
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_aqua.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_blueviolet.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_coral.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_darkblue.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_darkcyan.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_ghostwhite.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_indianred.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_lightcyan.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_lightpink.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_orchid.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_slategray.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_system.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_tan.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_violet.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/color_yellow.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/user_layout_selector.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/layout_settings_color.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/layout_settings_item.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/menu/menu_color.xml" charset="GBK" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

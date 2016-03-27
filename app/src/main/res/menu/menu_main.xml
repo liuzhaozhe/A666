@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--有多种menu，这种menu是基于xml的-->
+    <!--<item-->
+        <!--android:id="@+id/search"-->
+        <!--android:title="Search">-->
+
+    <!--</item>-->
+    <item
+        android:id="@+id/action_add_conversation"
+        android:icon="@drawable/de_ic_add"
+        android:title="@string/action_settings"
+        app:showAsAction="ifRoom|withText">
+        <menu><!--嵌套menu，形成子菜单-->
+            <item
+                android:id="@+id/add_item1"
+                android:icon="@drawable/de_btn_main_chat"
+                android:title="发动态" />
+            <item
+                android:id="@+id/add_item2"
+                android:icon="@drawable/de_btn_main_groups"
+                android:title="登陆注册改密码" />
+            <item
+                android:id="@+id/add_item3"
+                android:icon="@drawable/de_btn_main_contacts"
+                android:title="空" />
+        </menu>
+    </item>
+
+</menu>

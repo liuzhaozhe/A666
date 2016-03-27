@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gplus_color_1">#3e802f</color>
+    <color name="gplus_color_2">#427fed</color>
+    <color name="gplus_color_3">#b23424</color>
+    <color name="gplus_color_4">#f4b400</color>
+    <color name="user_layout_selected_bg">#ffd4d4d4</color>
+    <color name="theme_color">#D95555</color>
+    <color name="second_color">#888888</color>
+
+    <color name="primary">#ff03a9f4</color>
+    <!--list颜色-->
+    <color name="system">#ff03a9f4</color>
+    <color name="aqua">#00ffff</color>
+    <color name="blueviolet">#8A2BE2</color>
+    <color name="coral">#DA70D6</color>
+    <color name="darkblue">#00008B</color>
+    <color name="darkcyan">#008B8B</color>
+    <color name="ghostwhite">#F8F8FF</color>
+    <color name="indianred">#CD5C5C</color>
+    <color name="lightcyan">#E0FFFF</color>
+    <color name="lightpink">#FFB6C1</color>
+    <color name="orchid">#DA70D6</color>
+    <color name="slategray">#708090</color>
+    <color name="tan">#D2B48C</color>
+    <color name="violet">#EE82EE</color>
+    <color name="yellow">#FFFF00</color>
+</resources>
