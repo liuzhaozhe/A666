@@ -17,12 +17,15 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         />
-    <Button
-        android:text="会话列表"
-        android:id="@+id/btnConversationList"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="8"
+        android:background="@android:color/transparent"
+        android:overScrollMode="never"
         />
+
     <!--<ListView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->

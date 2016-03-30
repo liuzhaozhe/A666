@@ -1,7 +1,6 @@
 package com.life.a666;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentManager fManager = getSupportFragmentManager();
         if (savedInstanceState != null) {
             mTab01 = (MessageFragment) fManager.findFragmentByTag("MessageFragment");
-            mTab02 = (OtherFragment) fManager.findFragmentByTag("OtherFragment");
+            mTab02 = (FindFragment) fManager.findFragmentByTag("FindFragment");
             mTab03 = (SoloFragment) fManager.findFragmentByTag("SoloFragment");
             mTab04 = (SettingFragment) fManager.findFragmentByTag("SettingFragment");
         }
@@ -162,8 +161,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 1:
                 if (mTab02 == null) {
-                    mTab02 = new OtherFragment();
-                    transaction.add(R.id.id_content, mTab02, "OtherFragment");
+                    mTab02 = new FindFragment();
+                    transaction.add(R.id.id_content, mTab02, "FindFragment");
                 } else {
                     transaction.show(mTab02);
                 }

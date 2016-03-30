@@ -14,8 +14,11 @@ import android.widget.Toast;
 
 import com.life.a666.base.BaseActivity;
 import com.life.proxy.UserProxy;
+import com.life.server.HttpPostInteract;
 import com.life.util.toast;
 import com.life.view.DeletableEditText;
+
+import java.io.IOException;
 
 public class RegisterAndLoginActivity extends BaseActivity implements UserProxy.ISignUpListener,UserProxy.ILoginListener,UserProxy.IResetPasswordListener,View.OnClickListener {
 //用户代理，其中设置了多个接口
@@ -76,9 +79,20 @@ public class RegisterAndLoginActivity extends BaseActivity implements UserProxy.
         userProxy = new UserProxy(RegisterAndLoginActivity.this);
 //        ActionBarView.initActionbar(this, mToolbar);
     }
-
+    //在用户登录注册之后去服务器获取到token，以便rongyun 聊天功能的使用
+    public void getToken(String userName) {
+        //设置服务器端地址，传入IP和指定servlet
+//        HttpPostInteract.setPath("192.168.199.143", "server", "hello");
+//        try {
+//
+//            HttpPostInteract.Send(userName, userName);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+    }
     @Override
     public void onSignUpSuccess() {
+        getToken(userNameInput.getText().toString().trim() );
         toast.ShowText("注册成功" , mContext);
         finish();
     }
@@ -89,7 +103,7 @@ public class RegisterAndLoginActivity extends BaseActivity implements UserProxy.
     }
     @Override
     public void onLoginSuccess() {
-
+        getToken(userNameInput.getText().toString().trim() );
         toast.ShowText("登录成功",mContext);
         finish();
     }

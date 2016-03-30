@@ -1,10 +1,19 @@
 package com.life.a666;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,20 +23,30 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.life.server.Token;
-
 
 import com.life.application.MyApplication;
 import com.life.util.toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.rong.imkit.RongIM;
+import io.rong.imkit.fragment.ConversationListFragment;
 import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.Conversation;
 
 public class MessageFragment extends Fragment {
 
+    /**
+     * 页面集合
+     */
+    List<Fragment> fragmentList;
     private String TAG = "MessageFragment";
     Button btnChat;
-    Button btnConversationList;
+    //用于消息列表和联系人列表之间切换
+    private ViewPager mViewPager;
+    //viewPager的所有view
+    private ArrayList<View> mViewPagerContent = new ArrayList<View>(2);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,15 +66,7 @@ public class MessageFragment extends Fragment {
 
     public void initView(View view) {
         btnChat = (Button) view.findViewById(R.id.btnChat);
-        btnConversationList = (Button) view.findViewById(R.id.btnConversationList);
-        btnConversationList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//启动会话列表界面
-                if (RongIM.getInstance() != null)
-                    RongIM.getInstance().startConversationList(getActivity());
-            }
-        });
+        mViewPager = (ViewPager) view.findViewById(R.id.vp_container);
         btnChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,16 +74,22 @@ public class MessageFragment extends Fragment {
 
 //                String Token = "UZtUu+2bnIbg6bY0TTpfyjm82Pi6yIC0RkdBQY4WWnI/qhlR3idk/Ohvtmv+C3rwx1Yyr4TkVaUXY7MiLrLt9g==";//test
                 String userName = "";
-                if (null != MyApplication.getInstance().getCurrentUser())
-                    userName = MyApplication.getInstance().getCurrentUser().getUsername();
-                else
-                    toast.ShowText("请先登录",getContext());
+//                if (null != MyApplication.getInstance().getCurrentUser())
+//                    userName = MyApplication.getInstance().getCurrentUser().getUsername();
+//                else
+//                    toast.ShowText("请先登录",getContext());
 
-                    String Token = null;
+                String Token = null;
                 try {
-                    Token = com.life.server.Token.ServerGetToken(userName, userName);
+                    //为了方便调试IM功能，暂时写死Token，免得获取token很麻烦
+//                    SharedPreferences SPgetData = MyApplication.getInstance().getSharedPreferences(userName, Activity.MODE_PRIVATE);
+//                      第二步，获取数据，这里和存储数据不一样，不需要editor对象，只需要SharedPreferences对象即可获取值啦！传入key,获取数据，第二个参数是默认返回值
+//                    Token=SPgetData.getString("Token","");
+                    Token = "UZtUu+2bnIbg6bY0TTpfyjm82Pi6yIC0RkdBQY4WWnI/qhlR3idk/Ohvtmv+C3rwx1Yyr4TkVaUXY7MiLrLt9g==";
+
                     Log.i(TAG, Token);
                 } catch (Exception e) {
+                    Log.e(TAG, e.toString());
                     e.printStackTrace();
                 }
                 if (Token != null & Token != "") {
@@ -109,7 +126,7 @@ public class MessageFragment extends Fragment {
 
                         @Override
                         public void onError(RongIMClient.ErrorCode errorCode) {
-//                        Log.e(“MainActivity”, “——onError— -”+errorCode);
+                            Log.e("MessageFragment", errorCode.toString());
                         }
                     });
                 } else
@@ -118,6 +135,9 @@ public class MessageFragment extends Fragment {
 //                startActivity(new Intent(getActivity(), ConversationActivity.class));
 //            }
         });
+
+        showMessageList();
+
 //        tvGuide = (TextView) view.findViewById(R.id.tvGuide);
 //        tvGuide.setText(Environment.getExternalStorageDirectory().getPath() + "\n"
 //                + "data--" + Environment.getDataDirectory().getAbsolutePath());
@@ -138,9 +158,52 @@ public class MessageFragment extends Fragment {
         Log.i("", Environment.getExternalStorageDirectory().getPath());
     }
 
+    //使用rongyun 来显示消息列表
+    public void showMessageList() {
+        ConversationListFragment fragment = new ConversationListFragment();
+        Uri uri = Uri.parse("rong://" + getActivity().getApplicationInfo().packageName).buildUpon().appendPath("conversationlist")
+                .appendQueryParameter(Conversation.ConversationType.PRIVATE.getName(), "false")
+                .appendQueryParameter(Conversation.ConversationType.DISCUSSION.getName(), "false")
+                .build();
+        fragment.setUri(uri);
+
+        initViewPager(fragment);
+
+    }
+
+    private void initViewPager(ConversationListFragment fragment) {
+        List<Fragment> fragments = new ArrayList<Fragment>();
+        fragments.add(fragment);
+        fragments.add(new FindFragment());
+        FragAdapter adapter = new FragAdapter(getFragmentManager(), fragments);
+        mViewPager.setAdapter(adapter);
+    }
+
     /**
-     * 使用useListView
+     * FragmentPager适配器
+     *
+     * @author wwj
      */
-    private void useListView() {
+    public class FragAdapter extends FragmentPagerAdapter {
+        private List<Fragment> fragments;
+
+        public FragAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        public FragAdapter(FragmentManager fm, List<Fragment> fragments) {
+            super(fm);
+            this.fragments = fragments;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragments.size();
+        }
     }
 }
